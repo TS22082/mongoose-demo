@@ -13,10 +13,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/user_notes", {
 });
 
 const userRoutes = require("./routes/user-routes.js");
-app.use(userRoutes);
+const postRoutes = require("./routes/post-routes.js");
 
-const taskRoutes = require("./routes/task-routes.js");
-app.use(taskRoutes);
+app.use(postRoutes, userRoutes);
 
 mongoose.set("useCreateIndex", true);
 
