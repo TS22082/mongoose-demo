@@ -25,13 +25,15 @@ module.exports = {
   },
 
   addComment: (req, res) => {
-    POst.findByIdAndUpdate(
+    Post.findByIdAndUpdate(
       { _id: req.body.id },
       {
         $push: {
           comments: { comment: req.body.comment, authorId: req.body.authorId },
         },
       }
-    );
+    )
+      .then((response) => res.send(response))
+      .catch((err) => res.send(err));
   },
 };
