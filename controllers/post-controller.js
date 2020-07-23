@@ -17,4 +17,21 @@ module.exports = {
       : Post.findById({ _id: req.query.id })
           .then((post) => res.send(post))
           .catch((err) => res.send(err)),
+
+  updatePostText: (req, res) => {
+    Post.findByIdAndUpdate({ _id: req.body.id }, { text: req.body.text })
+      .then((response) => res.send(response))
+      .catch((err) => res.send(err));
+  },
+
+  addComment: (req, res) => {
+    POst.findByIdAndUpdate(
+      { _id: req.body.id },
+      {
+        $push: {
+          comments: { comment: req.body.comment, authorId: req.body.authorId },
+        },
+      }
+    );
+  },
 };
