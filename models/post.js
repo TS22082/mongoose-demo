@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const taskSchema = new Schema({
+const postSchema = new Schema({
   text: {
     type: String,
     trim: true,
@@ -25,6 +25,6 @@ const taskSchema = new Schema({
   },
 });
 
-const Task = mongoose.model("Task", taskSchema);
+const Post = mongoose.model("Post", postSchema);
 
-module.exports = Task;
+module.exports = Post;
