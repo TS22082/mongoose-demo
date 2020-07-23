@@ -2,31 +2,28 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
-  task: {
+  text: {
     type: String,
     trim: true,
-    required: "Need to enter text for task",
+    required: "Need to enter text for post",
   },
 
-  completed: {
-    type: Boolean,
-    default: false,
-  },
+  comments: {
+    type: [
+      {
+        comment: { type: String, trim: true, required: true },
+        authorId: { type: String, trim: true, required: true },
+      },
+    ],
 
-  tags: {
-    type: [String],
     default: [],
   },
 
-  author: {
+  authorId: {
     type: String,
-    required: "Needs user id to save task",
+    required: "Needs user id to make post",
   },
 });
-
-taskSchema.methods.addTag = function (text) {
-  this.tags.push(text);
-};
 
 const Task = mongoose.model("Task", taskSchema);
 
