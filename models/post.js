@@ -11,11 +11,9 @@ const postSchema = new Schema({
   comments: {
     type: [
       {
-        comment: { type: String, trim: true, required: true },
-        authorId: { type: String, trim: true, required: true },
+        likes: { type: String, trim: true, required: true, unique: true },
       },
     ],
-
     default: [],
   },
 
