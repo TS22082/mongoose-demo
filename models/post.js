@@ -8,12 +8,8 @@ const postSchema = new Schema({
     required: "Need to enter text for post",
   },
 
-  comments: {
-    type: [
-      {
-        likes: { type: String, trim: true, required: true, unique: true },
-      },
-    ],
+  likes: {
+    type: [{ type: Schema.Types.ObjectId, required: true, unique: true }],
     default: [],
   },
 
