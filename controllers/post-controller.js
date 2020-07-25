@@ -24,12 +24,25 @@ module.exports = {
       .catch((err) => res.send(err));
   },
 
-  addComment: (req, res) => {
+  addLike: (req, res) => {
     Post.findByIdAndUpdate(
-      { _id: req.body.id },
+      { _id: req.body.postId },
       {
         $push: {
-          comments: { comment: req.body.comment, authorId: req.body.authorId },
+          likes: { likerId: req.body.likerId },
+        },
+      }
+    )
+      .then((response) => res.send(response))
+      .catch((err) => res.send(err));
+  },
+
+  removeLike: (req, res) => {
+    Post.findByIdAndUpdate(
+      { _id: req.body.postId },
+      {
+        $pull: {
+          likes: { likerId: req.body.likerId },
         },
       }
     )

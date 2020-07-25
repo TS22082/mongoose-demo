@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const subSchema = new Schema(
+  {
+    likerId: { type: Schema.Types.ObjectId },
+  },
+  { _id: false, unique: true }
+);
+
 const postSchema = new Schema({
   text: {
     type: String,
@@ -8,10 +15,7 @@ const postSchema = new Schema({
     required: "Need to enter text for post",
   },
 
-  likes: {
-    type: [{ type: Schema.Types.ObjectId, required: true, unique: true }],
-    default: [],
-  },
+  likes: [subSchema],
 
   authorId: {
     type: String,
